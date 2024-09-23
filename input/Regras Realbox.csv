@@ -1,0 +1,9 @@
+Pergunta,Detalhes
+Quais informações necessárias em um pedido?,"Cor do vidro, espessura do vidro, se a medida é de vão ou final, altura e largura, tipo de instalação"
+"Se o cliente colocar medida de vão, quais informações são necessárias?","Cor do vidro, espessura do vidro, altura e largura do vão e tipo de instalação"
+"Se o cliente colocar medida final, quais informações são necessárias?","Cor do vidro, espessura do vidro, altura e largura das peças e tipo de instalação"
+Qual tamanho minimo para lapidar uma peça temperada?,O tamanho mínimo de lapidação é de 150 x 150 mm.
+Qual tamanho minimo para temperar uma peça temperada?,O tamanho minimo para temperar uma peça é de 250 x 250 mm.
+Qual o tamanho máximo para não terceirizarmos uma peça?,"Peças acima de 4,5m² são terceirizadas. Espelho de 4mm podem ter uma dimensão linear máxima de 2500mm"
+Quais as limitações de espelho 4mm?,"Não podem ter uma medida linear maior que 2500 mm, aréa máxima de 3m², e não podem ter recortes. Caso contrário, serão terceirizadas"
+Quais limitações de espelho 6mm?,"Tamanho minimo de 150x150mm para lapidar. Tamanho máximo de 3200 mm linear e área máxima de 4,5 m²"
