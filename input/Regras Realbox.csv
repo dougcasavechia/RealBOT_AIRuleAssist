@@ -4,6 +4,37 @@ Quais informações necessárias em um pedido?,"Cor do vidro, espessura do vidro
 "Se o cliente colocar medida final, quais informações são necessárias?","Cor do vidro, espessura do vidro, altura e largura das peças e tipo de instalação"
 Qual tamanho minimo para lapidar uma peça temperada?,O tamanho mínimo de lapidação é de 150 x 150 mm.
 Qual tamanho minimo para temperar uma peça temperada?,O tamanho minimo para temperar uma peça é de 250 x 250 mm.
+Qual tamanho máximo para temperar uma peça temperada?,"A peça não pode ter uma dimensão maior do que 3600 mm, ou as duas maiores do que 2100 mm"
+Por que tem tamanho mínimo pra temperar?,Porque peças menores do que 250x250 correm o risco de cair no vão dos rolos do forno.
+Por que tem tamanho máximo pra temperar?,Porque o forno tem limite de 3600 x 2100 mm.
 Qual o tamanho máximo para não terceirizarmos uma peça?,"Peças acima de 4,5m² são terceirizadas. Espelho de 4mm podem ter uma dimensão linear máxima de 2500mm"
 Quais as limitações de espelho 4mm?,"Não podem ter uma medida linear maior que 2500 mm, aréa máxima de 3m², e não podem ter recortes. Caso contrário, serão terceirizadas"
-Quais limitações de espelho 6mm?,"Tamanho minimo de 150x150mm para lapidar. Tamanho máximo de 3200 mm linear e área máxima de 4,5 m²"
+Quais as limitações de espelho 6mm?,"Tamanho minimo de 150x150mm para lapidar. Tamanho máximo de 3200 mm linear e área máxima de 4,5 m²"
+Quais as limitações de qualquer tipo de peça fabricada internamente?,"A peça para ser fabricada internamente precisa ter no máximo 4,5m². Além disso será terceirizada."
+Quais são as matérias primas monolíticas comuns disponíveis?,"Incolor 6mm, Incolor 8mm, Incolor 10mm, Fumê 8mm, Verde 8mm e Espelho Guardiam 4mm são as mais comuns e com prazo menor."
+Quais são outras matérias primas monolíticas não tão comuns?,"Incolor 4mm, Miniboreal 3/4mm, Fume 6mm, Fume 10mm, Verde 6mm, Verde 10mm, Refletivo Neutral 8mm, Acidato 8mm, Pontilhado 8mm."
+Quais são as matérias primas de laminados disponíveis?,"Refletivo Neutral 4+4mm, Incolor 3+3mm, Incolor 4+4mm, Incolor 5+5mm."
+"Entre só lapidado e cortado, qual melhor opção?","Sempre opte por vender lapidado. Os custos de produção são similares, e corremos menos riscos de acidentes de trabalho."
+Qual tamanho minímo para fazer um diâmetro?,O tamanho mínimo é de 400 mm de diâmetro
+Qual tamanho máximo para fazer um diâmtro?,O tamanho máximo é de 1600 mm de diâmetro
+"Se a peça está em ""corte"", pra quem eu devo perguntar?",Para o Coordenador de produção
+"Se a peça está em ""lapidação"", pra quem eu devo perguntar?",Para o Coordenador de produção
+"Se a peça está em ""marcação"", pra quem eu devo perguntar?",Para o Coordenador de produção
+"Se a peça está em ""conferência"", pra quem eu devo perguntar?",Para o Coordenador de produção
+"Se a peça está em ""pré forno"", pra quem eu devo perguntar?",Para o Coordenador de produção
+"Se a peça está em ""têmpera"", pra quem eu devo perguntar?",Para o Coordenador de produção
+"Se a peça está em ""entrada de expedição"", pra quem eu devo perguntar?","Se forem peças temperadas, para o Coordenador de produção. Se forem apenas cortadas/lapidadas, para a Expedição."
+"Se a peça está em ""expedição"", pra quem eu devo perguntar?",Para a Expedição
+"Se a peça está em ""transito"", pra quem eu devo perguntar?",Para a Expedição
+"Se a peça está em ""Realbox Loja"", pra quem eu devo perguntar?",A peça deve estar na loja.
+"Se a peça está em ""PCP/Programação"", pra quem eu devo perguntar?",Para o PCP
+"Se a peça está em ""Aguardando Entrega"", pra quem eu devo perguntar?",Para a Expedição
+Qual a missão da Realbox?,"Ser referência no mercado vidreiro, buscando aprimoramento contínuo e inovação, mantendo assim o crescimento da empresa."
+Qual a visão da Realbox?,"Contribuir para o crescimento do setor vidreiro na região de Sorocaba, por meio de uma ampla gama de produtos de qualidade à pronta-entrega para a distribuição."
+Quais os valores da Realbox?,"Tradição, Qualidade, Seriedade, Excelência, Competência, Ética, Transparência e Efetividade para com seus colaboradores, clientes e fornecedores."
+Quando surgiu a Realbox?,"A RealBox Distribuidora foi fundada em 1991, inicialmente voltada para a venda e produção de Box de acrílico e portas sanfonadas, atendendo apenas o varejo."
+Qual a diferenciação da Realbox?,"A RealBox se diferencia no setor por sua tradição e credibilidade, realizando entregas semanais, facilitando assim as programações de instalação de seus clientes."
+Quais as vantagens do e-commerce?,"Agilidade, economia de tempo do cliente e do vendedor com pedidos simples, orçamentos fáceis, menor prazo de entrega, praticidade"
+Por que não pode ser tudo urgente?,"Como toda empresa, há limitações no processo que afetam o prazo, e diminuir o prazo pra um, pode significar atrasar pra outro."
+O que precisa ser informado em urgências?,"Qual o vidro, qual a espessura, qual o tipo de instalação, qual a data de entrega desejada ou se o cliente irá retirar, e o motivo da urgência."
+O que precisa ter nos desenho?,"Os desenho precisam estar legíveis, com todas informações necessárias para fazer um pedido."

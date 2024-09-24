@@ -1,10 +1,6 @@
 import streamlit as st
-import os
-from langchain.prompts import PromptTemplate
-from langchain.memory import ConversationBufferMemory
-from langchain.chains.conversational_retrieval.base import ConversationalRetrievalChain
+from langchain.chains.question_answering import load_qa_chain
 from langchain_openai.chat_models import ChatOpenAI
-from configs.configs import *
 
 class Gui():
     def __init__(self, PATH_INPUT_FILES, utils):
@@ -12,85 +8,74 @@ class Gui():
         self.PATH_INPUT_FILES = PATH_INPUT_FILES
 
     def create_talk_chain(self):
-        # Importar documentos e criar vetor
-        self.utils.import_documents()  # Lê e converte o Excel para CSV automaticamente
-        self.utils.import_csv_files()  # Importar CSV já convertido
-        self.utils.split_documents()   # Dividir documentos
-        vector_store = self.utils.create_vector_store()
-
-        if vector_store is None:
-            st.error("Erro ao criar vector store. Verifique se os documentos foram carregados corretamente.")
+        # Carregar os documentos a partir do CSV (após conversão do Excel)
+        documents = self.utils.import_documents()
+        if not documents:
             return
 
-        chat = ChatOpenAI(model=get_config('model_name'))
-        memory = ConversationBufferMemory(
-            return_messages=True,
-            memory_key='chat_history',
-            output_key='answer'
-        )
+        # Configurar o modelo de chat da OpenAI
+        chat = ChatOpenAI(model='gpt-3.5-turbo-0125')
 
-        retriever = vector_store.as_retriever(
-            search_type=get_config('retrieval_search_type'),
-            search_kwargs=get_config('retrieval_kwargs')
-        )
+        # Configurar a cadeia de perguntas e respostas (QA chain)
+        chain = load_qa_chain(llm=chat, chain_type='stuff', verbose=True)
 
-        prompt = PromptTemplate.from_template(get_config('prompt'))
-        chat_chain = ConversationalRetrievalChain.from_llm(
-            llm=chat,
-            memory=memory,
-            retriever=retriever,
-            return_source_documents=True,
-            verbose=True,
-            combine_docs_chain_kwargs={'prompt': prompt}
-        )
-        st.session_state['chain'] = chat_chain
+        # Armazenar a cadeia e os documentos no session_state
+        st.session_state['chain'] = chain
+        st.session_state['documents'] = documents  # Armazena os documentos carregados
 
     def sidebar(self):
         button_label = "Inicializar RealBOT" if 'chain' not in st.session_state else "Atualizar RealBOT"
 
         if st.button(button_label, use_container_width=True):
-            # Verificar se o arquivo Excel já foi convertido corretamente
-            if not os.path.exists(self.utils.csv_file):
-                st.error(f"Arquivo CSV não encontrado. Verifique se o arquivo Excel foi convertido corretamente.")
-            else:
-                st.success('Inicializando o RealBOT...')
-                self.create_talk_chain()
+            # Inicializar a cadeia de perguntas e respostas (QA chain)
+            self.create_talk_chain()
 
-                # Em vez de `st.experimental_rerun()`, controlamos via `session_state`
-                st.session_state['chain_initialized'] = True  # Marca a inicialização no estado
+            if 'chain' in st.session_state:
+                st.session_state['chain_initialized'] = True
 
     def chat_window(self):
         st.header('🤖 REALBOT - Assistente de Regras 🤖', divider=True)
-        
-        if 'chain' not in st.session_state:
+
+        if 'chain_initialized' not in st.session_state:
             st.error('Inicialize o RealBOT para começar.')
             st.stop()
 
-        chain = st.session_state['chain']
-        self.memory = chain.memory
-
-        messages = self.memory.load_memory_variables({})['chat_history']
+        # Inicializar o histórico de mensagens se ainda não existir
+        if 'messages' not in st.session_state:
+            st.session_state['messages'] = []  # Armazenar as mensagens na sessão
 
         container = st.container()
 
-        for message in messages:
-            chat = container.chat_message(message.type)
-            chat.markdown(message.content)
+        # Exibir o histórico de mensagens do chat
+        for message in st.session_state['messages']:
+            if message['role'] == 'human':
+                container.chat_message('human').markdown(message['content'])
+            else:
+                container.chat_message('ai').markdown(message['content'])
 
+        # Entrada de nova mensagem
         new_message = st.chat_input('Digite sua dúvida... e converse com o RealBOT')
 
         if new_message and new_message.strip():
-            chat = container.chat_message('human')
-            chat.markdown(new_message)
+            # Adicionar a mensagem do usuário ao histórico
+            st.session_state['messages'].append({'role': 'human', 'content': new_message})
+            container.chat_message('human').markdown(new_message)
 
             try:
-                response = chain.invoke({'question': new_message})
-                chat = container.chat_message('ai')
-                chat.markdown(response['answer'])
+                # Executar a cadeia de perguntas e respostas com base na nova pergunta
+                chain = st.session_state['chain']
+                documents = st.session_state['documents']
+                
+                # Executar a cadeia passando os documentos e a pergunta
+                response = chain.run(input_documents=documents, question=new_message)
+
+                # Adicionar a resposta do bot ao histórico
+                st.session_state['messages'].append({'role': 'ai', 'content': response})
+                container.chat_message('ai').markdown(response)
+
             except Exception as e:
                 st.error(f"Erro ao processar a pergunta: {e}")
+                st.session_state['messages'].append({'role': 'ai', 'content': f"Erro: {e}"})
 
-            # Em vez de `st.experimental_rerun()`, controlamos a atualização de interface manualmente
-            st.session_state['new_message'] = new_message
-
+        st.session_state['new_message'] = new_message
 
